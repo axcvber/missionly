@@ -63,20 +63,20 @@ const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
 
   if (isEditing) {
     return (
-      <form action={onSubmit} ref={formRef} className='flex items-center gap-x-2'>
+      <form action={onSubmit} ref={formRef}>
         <FormInput
           ref={inputRef}
           id='title'
           onBlur={onBlur}
           defaultValue={title}
-          className='text-lg font-medium px-[7px] py-1 h-7 bg-transparent focus-visible:outline-none focus-visible:ring-transparent border-none'
+          className=' bg-white/10 text-white focus-visible:outline-none focus-visible:ring-transparent border-none'
         />
       </form>
     )
   }
 
   return (
-    <Button onClick={enableEditing} variant={'transparent'} className='font-medium text-lg h-auto w-auto p-1 px-2'>
+    <Button onClick={enableEditing} size='sm' variant={'transparent'} className='text-base'>
       {title}
     </Button>
   )

@@ -1,6 +1,7 @@
 'use client'
 
 import { Skeleton } from '@/components/ui/skeleton'
+import { useOrganizationStore } from '@/hooks/use-organization-store'
 import { useOrganization } from '@clerk/nextjs'
 import { CreditCard } from 'lucide-react'
 import Image from 'next/image'
@@ -12,9 +13,12 @@ interface InfoProps {
 
 export const Info = ({ isPro }: InfoProps) => {
   const { organization, isLoaded } = useOrganization()
-  if (!isLoaded) {
+  const { isSwitching } = useOrganizationStore()
+
+  if (!isLoaded || isSwitching) {
     return <Info.Skeleton />
   }
+
   return (
     <div className='flex items-center gap-x-4'>
       <div className='w-[60px] h-[60px] relative'>
@@ -35,13 +39,13 @@ Info.Skeleton = function SkeletonInfo() {
   return (
     <div className='flex items-center gap-x-4'>
       <div className='w-[60px] h-[60px] relative'>
-        <Skeleton className='w-full h-full absolute' />
+        <Skeleton className='w-full h-full' />
       </div>
       <div className='space-y-2'>
-        <Skeleton className='w-[200px] h-10 ' />
+        <Skeleton className='w-[200px] h-6 rounded-sm' />
         <div className='flex items-center'>
-          <Skeleton className='w-4 h-4 mr-2' />
-          <Skeleton className='w-[100px] h-4 ' />
+          <Skeleton className='w-4 h-4 mr-1 rounded-sm' />
+          <Skeleton className='w-[100px] h-4 rounded-sm' />
         </div>
       </div>
     </div>

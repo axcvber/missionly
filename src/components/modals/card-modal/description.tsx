@@ -96,7 +96,7 @@ export const Description = ({ data }: DescriptionProps) => {
             />
             <div className='flex items-center gap-x-2'>
               <FormSubmit>Save</FormSubmit>
-              <Button type='button' onClick={disableEditing} size={'sm'} variant={'ghost'}>
+              <Button type='button' onClick={disableEditing} size={'sm'} variant={'outline-destructive'}>
                 Cancel
               </Button>
             </div>
@@ -105,7 +105,7 @@ export const Description = ({ data }: DescriptionProps) => {
           <div
             onClick={enableEditing}
             role='button'
-            className='min-h-[78px] bg-neutral-200 text-sm font-medium py-3 px-3.5 rounded-md'
+            className='min-h-[78px] bg-muted text-muted-foreground text-sm font-medium py-3 px-3.5 rounded-md border'
           >
             {data.description || 'Add a more detailed description...'}
           </div>
@@ -119,10 +119,10 @@ export const Description = ({ data }: DescriptionProps) => {
 Description.Skeleton = function HeaderSkeleton() {
   return (
     <div className='flex items-start gap-x-3 w-full'>
-      <Skeleton className='w-6 h-6 bg-neutral-200' />
+      <Skeleton className='w-6 h-6 bg-neutral-200 rounded-sm' />
       <div className='w-full'>
-        <Skeleton className='w-24 h-6 mb-2 bg-neutral-200' />
-        <Skeleton className='w-full h-[78px] bg-neutral-200' />
+        <Skeleton className='w-24 h-6 mb-2 bg-neutral-200 rounded-sm' />
+        <Skeleton className='w-full h-[78px] bg-neutral-200 rounded-sm' />
       </div>
     </div>
   )

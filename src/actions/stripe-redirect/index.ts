@@ -2,15 +2,13 @@
 
 import prisma from '@/lib/db'
 import { revalidatePath } from 'next/cache'
-import { StripeRedirectSchema, InputType, ReturnType } from './schema'
+import { StripeRedirectSchema, ReturnType } from './schema'
 import { auth, currentUser } from '@clerk/nextjs/server'
 import { createSafeAction } from '@/lib/create-safe-action'
-import { createAuditLog } from '@/lib/create-audit-log'
-import { ACTION, ENTITY_TYPE } from '@prisma/client'
 import { absoluteUrl } from '@/lib/utils'
 import { stripe } from '@/lib/stripe'
 
-const handler = async (data: InputType): Promise<ReturnType> => {
+const handler = async (): Promise<ReturnType> => {
   const { userId, orgId } = auth()
   const user = await currentUser()
 
@@ -50,7 +48,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
             price_data: {
               currency: 'USD',
               product_data: {
-                name: 'Missionly Pro',
+                name: 'MissiOnly Pro',
                 description: 'Unlimited boards for your organization',
               },
               unit_amount: 2000,

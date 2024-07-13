@@ -3,21 +3,21 @@
 import React from 'react'
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { OrganizationResource } from '@clerk/types'
-import { cn } from '@/lib/utils'
-import Image from 'next/image'
 import { Activity, CreditCard, Layout, Settings } from 'lucide-react'
 import { useRouter, usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import Image from 'next/image'
+import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 interface NavItemProps {
   isActive: boolean
-  isExpanded: boolean
   organization: OrganizationResource
   onExpand: (id: string) => void
 }
 
-export const NavItem = ({ isActive, isExpanded, onExpand, organization }: NavItemProps) => {
+export const NavItem = ({ isActive, onExpand, organization }: NavItemProps) => {
   const router = useRouter()
   const pathname = usePathname()
 
@@ -53,8 +53,8 @@ export const NavItem = ({ isActive, isExpanded, onExpand, organization }: NavIte
       <AccordionTrigger
         onClick={() => onExpand(organization.id)}
         className={cn(
-          'flex items-center gap-x-2 p-1.5 text-neutral-700 rounded-md hover:bg-neutral-500/10 transition text-start no-underline hover:no-underline',
-          isActive && !isExpanded && 'bg-sky-500/10 text-sky-700'
+          'flex items-center gap-x-2 p-1.5 text-primary rounded-md hover:bg-primary/10 transition text-start no-underline hover:no-underline',
+          isActive && 'bg-primary/10 text-primary hover:bg-primary/10 hover:text-primary'
         )}
       >
         <div className='flex items-center gap-x-2'>
@@ -64,20 +64,22 @@ export const NavItem = ({ isActive, isExpanded, onExpand, organization }: NavIte
           <span className='font-medium text-sm'>{organization.name}</span>
         </div>
       </AccordionTrigger>
-      <AccordionContent className='pt-1 text-neutral-700'>
+      <AccordionContent className='py-2'>
         {routes.map((route) => (
           <Button
             key={route.href}
+            asChild
             size={'sm'}
-            onClick={() => onClick(route.href)}
             className={cn(
-              'w-full font-normal justify-start pl-10 mb-1 [&_svg]:w-4 [&_svg]:h-4 [&_svg]:mr-2',
-              pathname === route.href && 'bg-sky500/10 text-sky-700'
+              'flex justify-start pl-5 mb-1 [&_svg]:mr-1 hover:text-primary text-neutral-600 font-normal',
+              pathname === route.href && 'text-primary hover:text-primary font-medium bg-accent'
             )}
             variant={'ghost'}
           >
-            {route.icon}
-            {route.label}
+            <Link href={route.href}>
+              {route.icon}
+              {route.label}
+            </Link>
           </Button>
         ))}
       </AccordionContent>

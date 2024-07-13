@@ -5,13 +5,15 @@ import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
 import { useAction } from '@/hooks/use-action'
 import { useProModal } from '@/hooks/use-pro-modal'
+import { Crown } from 'lucide-react'
 import React from 'react'
 
 interface SubscriptionButtonProps {
   isPro: boolean
+  className?: string
 }
 
-const SubscriptionButton = ({ isPro }: SubscriptionButtonProps) => {
+const SubscriptionButton = ({ isPro, className }: SubscriptionButtonProps) => {
   const { toast } = useToast()
   const onOpenProModal = useProModal((state) => state.onOpen)
   const { execute, isLoading } = useAction(stripeRedirect, {
@@ -35,7 +37,8 @@ const SubscriptionButton = ({ isPro }: SubscriptionButtonProps) => {
   }
 
   return (
-    <Button onClick={onClick} disabled={isLoading}>
+    <Button className={className} onClick={onClick} disabled={isLoading}>
+      <Crown />
       {isPro ? 'Manage subscription' : 'Upgrade to pro'}
     </Button>
   )

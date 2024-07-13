@@ -3,6 +3,7 @@ import { auth } from '@clerk/nextjs/server'
 import { notFound, redirect } from 'next/navigation'
 import React from 'react'
 import BoardNavbar from './_components/board-navbar'
+import Image from 'next/image'
 
 export async function generateMetadata({ params }: { params: { boardId: string } }) {
   const { orgId } = auth()
@@ -50,15 +51,11 @@ export default async function BoardLayout({
   }
 
   return (
-    <div
-      className='relative h-full bg-no-repeat bg-cover bg-center'
-      style={{
-        backgroundImage: `url(${board.imageFullUrl})`,
-      }}
-    >
-      <BoardNavbar data={board} />
+    <div className='relative w-full h-full flex flex-col'>
+      <Image priority fill src={board.imageFullUrl} alt='Background' className='object-cover' />
       <div className='absolute inset-0 bg-black/10' />
-      <main className='relative pt-28 h-full'>{children}</main>
+      <BoardNavbar data={board} />
+      <main className='relative p-4 overflow-x-auto h-full'>{children}</main>
     </div>
   )
 }

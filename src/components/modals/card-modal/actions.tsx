@@ -74,24 +74,18 @@ export const Actions = ({ data }: ActionsProps) => {
   return (
     <div className='space-y-2 mt-2'>
       <p className='text-xs font-semibold'>Actions</p>
-      <Button
-        onClick={onCopy}
-        disabled={isLoadingCopy}
-        variant={'gray'}
-        size={'inline'}
-        className='w-full justify-start'
-      >
-        <Copy className='h-4 w-4 mr-2' />
+      <Button onClick={onCopy} disabled={isLoadingCopy} variant={'outline-primary'} size={'sm'} className='w-full'>
+        <Copy />
         Copy
       </Button>
       <Button
         onClick={onDelete}
         disabled={isLoadingDelete}
-        variant={'gray'}
-        size={'inline'}
-        className='w-full justify-start'
+        variant={'outline-destructive'}
+        size={'sm'}
+        className='w-full'
       >
-        <Trash className='h-4 w-4 mr-2' />
+        <Trash />
         Delete
       </Button>
     </div>
@@ -101,9 +95,9 @@ export const Actions = ({ data }: ActionsProps) => {
 Actions.Skeleton = function ActionsSkeleton() {
   return (
     <div className='space-y-2 mt-2'>
-      <Skeleton className='w-20 h-4 mt-1 bg-neutral-200' />
-      <Skeleton className='w-full h-8 mt-1 bg-neutral-200' />
-      <Skeleton className='w-full h-8 mt-1 bg-neutral-200' />
+      <Skeleton className='w-14 h-4 mt-1 bg-neutral-200 rounded-sm' />
+      <Skeleton className='w-full h-9 mt-1 bg-neutral-200 rounded-sm' />
+      <Skeleton className='w-full h-9 mt-1 bg-neutral-200 rounded-sm' />
     </div>
   )
 }

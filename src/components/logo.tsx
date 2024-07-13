@@ -4,9 +4,8 @@ import React from 'react'
 
 const Logo = () => {
   return (
-    <Link href={'/'} className='hover:opacity-75 transition items-center gap-x-1 hidden md:flex'>
-      <Image width={40} height={40} src={'/logo.png'} alt='Logo' />
-      <span className='text-lg font-semibold font-heading text-neutral-600'>Missionly</span>
+    <Link href={'/'} className='hover:opacity-75 transition-opacity block'>
+      <Image priority width={200} height={60} alt='Logo' src='/logo.png' quality={100} />
     </Link>
   )
 }

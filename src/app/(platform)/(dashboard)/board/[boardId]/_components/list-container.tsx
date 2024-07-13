@@ -28,12 +28,6 @@ const ListContainer = ({ boardId, data }: ListContainerProps) => {
   const { toast } = useToast()
 
   const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
-    onSuccess: () => {
-      toast({
-        title: 'List reordered',
-        variant: 'success',
-      })
-    },
     onError: (error) => {
       toast({
         title: error,
@@ -43,12 +37,6 @@ const ListContainer = ({ boardId, data }: ListContainerProps) => {
   })
 
   const { execute: executeUpdateCardOrder } = useAction(updateCardOrder, {
-    onSuccess: () => {
-      toast({
-        title: 'Card reordered',
-        variant: 'success',
-      })
-    },
     onError: (error) => {
       toast({
         title: error,
@@ -150,13 +138,13 @@ const ListContainer = ({ boardId, data }: ListContainerProps) => {
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='lists' type='list' direction='horizontal'>
         {(provided) => (
-          <ol {...provided.droppableProps} ref={provided.innerRef} className='flex gap-x-3 h-full'>
+          <ol {...provided.droppableProps} ref={provided.innerRef} className='flex w-full h-full'>
             {orderedData.map((list, inx) => {
               return <ListItem key={list.id} index={inx} data={list} />
             })}
             {provided.placeholder}
             <ListForm />
-            <div className='flex-shrink-0 w-1' />
+            <div className='flex-shrink-0 w-2' />
           </ol>
         )}
       </Droppable>

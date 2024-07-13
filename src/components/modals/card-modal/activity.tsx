@@ -28,11 +28,11 @@ export const Activity = ({ data }: ActivityProps) => {
 
 Activity.Skeleton = function ActivitySkeleton() {
   return (
-    <div className='flex items-center gap-x-3 w-full'>
-      <Skeleton className='bg-neutral-200 h-6 w-6' />
+    <div className='flex items-start gap-x-3 w-full'>
+      <Skeleton className='bg-neutral-200 h-6 w-6 rounded-sm' />
       <div className='w-full'>
-        <Skeleton className='bg-neutral-200 h-6 w-24 mb-2' />
-        <Skeleton className='bg-neutral-200 h-10 w-full' />
+        <Skeleton className='bg-neutral-200 h-6 w-24 mb-2 rounded-sm' />
+        <Skeleton className='bg-neutral-200 h-9 w-full rounded-sm' />
       </div>
     </div>
   )

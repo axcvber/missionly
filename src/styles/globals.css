@@ -19,10 +19,10 @@ body,
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
 
-    --primary: 0 0% 9%;
+    --primary: 181 73% 23%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 0 0% 96.1%;
+    --secondary: 29 100% 80%;
     --secondary-foreground: 0 0% 9%;
 
     --muted: 0 0% 96.1%;
@@ -36,39 +36,9 @@ body,
 
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --ring: 166 32% 87%;
 
     --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
   }
 }
 
@@ -77,15 +47,46 @@ body,
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
+  h1 {
+    @apply h1;
+  }
+  h2 {
+    @apply h2;
+  }
+  h3 {
+    @apply h3;
+  }
+  h4 {
+    @apply h4;
+  }
   h5 {
-    @apply font-heading font-semibold;
+    @apply h5;
+  }
+  h6 {
+    @apply h6;
+  }
+}
+
+@layer utilities {
+  .h1 {
+    @apply text-4xl sm:text-5xl font-semibold;
+  }
+  .h2 {
+    @apply text-3xl sm:text-4xl font-semibold;
+  }
+  .h3 {
+    @apply text-2xl sm:text-3xl font-semibold;
+  }
+  .h4 {
+    @apply text-xl sm:text-2xl font-semibold;
+  }
+  .h5 {
+    @apply text-lg sm:text-xl font-semibold;
+  }
+  .h6 {
+    @apply text-base sm:text-lg font-semibold;
   }
 }

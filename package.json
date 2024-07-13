@@ -30,6 +30,7 @@
     "lucide-react": "^0.390.0",
     "next": "14.2.3",
     "next-auth": "^5.0.0-beta.19",
+    "nextjs-toploader": "^1.6.12",
     "react": "^18",
     "react-dom": "^18",
     "stripe": "^15.11.0",

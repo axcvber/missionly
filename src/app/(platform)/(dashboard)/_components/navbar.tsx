@@ -1,29 +1,32 @@
+import React from 'react'
 import Logo from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { OrganizationSwitcher, UserButton } from '@clerk/nextjs'
-import { Plus } from 'lucide-react'
-import React from 'react'
+import { DiamondPlus } from 'lucide-react'
 import MobileSidebar from './mobile-sidebar'
 import FormPopover from '@/components/form/form-popover'
+import { checkSubscription } from '@/lib/subscription'
 
-const Navbar = () => {
+const Navbar = async () => {
+  const isPro = await checkSubscription()
+
   return (
-    <nav className='fixed z-50 top-0 w-full px-4 h-14 border-b shadow-sm bg-white flex items-center'>
-      <MobileSidebar />
-      <div className='flex items-center gap-x-4'>
+    <header className='sticky top-0 z-50 w-full h-16 min-h-16 px-4 border-b bg-white flex items-center shadow-sm'>
+      <MobileSidebar isPro={isPro} />
+      <div className='flex items-center gap-x-3'>
         <div className='hidden md:flex'>
           <Logo />
         </div>
-        <FormPopover align='start' side='bottom' sideOffset={18}>
-          <Button variant={'primary'} size={'sm'} className='rounded-sm hidden md:flex gap-1 h-auto py-1.5 px-2'>
-            <Plus className='h-4 w-4' />
+        <FormPopover align='start' side='bottom' sideOffset={12}>
+          <Button size={'sm'} className='hidden md:flex'>
+            <DiamondPlus />
             Create
           </Button>
         </FormPopover>
 
-        <FormPopover align='start' side='bottom' sideOffset={18}>
-          <Button variant={'primary'} size={'sm'} className='rounded-sm block md:hidden'>
-            <Plus className='h-4 w-4' />
+        <FormPopover align='center' side='bottom' sideOffset={12}>
+          <Button size={'icon'} className='flex md:hidden'>
+            <DiamondPlus />
           </Button>
         </FormPopover>
       </div>
@@ -35,11 +38,9 @@ const Navbar = () => {
           afterLeaveOrganizationUrl={'/select-org'}
           appearance={{
             elements: {
-              rootBox: {
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              },
+              organizationSwitcherTrigger: 'h-9 rounded-sm',
+              organizationSwitcherPopoverCard: 'rounded-md shadow-md',
+              organizationSwitcherPopoverMain: 'rounded-md',
             },
           }}
         />
@@ -47,15 +48,14 @@ const Navbar = () => {
           afterSignOutUrl='/'
           appearance={{
             elements: {
-              avatarBox: {
-                height: 30,
-                width: 30,
-              },
+              avatarBox: 'w-8 h-8',
+              userButtonPopoverCard: 'rounded-md shadow-md',
+              userButtonPopoverMain: 'rounded-md',
             },
           }}
         />
       </div>
-    </nav>
+    </header>
   )
 }
 

@@ -1,4 +1,4 @@
 export const siteConfig = {
-  name: 'Missionly',
+  name: 'MissiOnly',
   description: 'Collaborate, manage projects, and reach new productivity peaks',
 }

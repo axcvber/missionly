@@ -2,12 +2,10 @@
 
 import { List } from '@prisma/client'
 import React, { ElementRef, useRef } from 'react'
-
 import { Popover, PopoverClose, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
-import { MoreHorizontal, X } from 'lucide-react'
+import { CopyPlus, DiamondPlus, MoreHorizontal, Trash2, X } from 'lucide-react'
 import { FormSubmit } from '@/components/form/form-submit'
-import { Separator } from '@/components/ui/separator'
 import { useAction } from '@/hooks/use-action'
 import { deleteList } from '@/actions/delete-list'
 import { useToast } from '@/components/ui/use-toast'
@@ -74,41 +72,40 @@ const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           <MoreHorizontal className='h-4 w-4' />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='px-0 py-3 w-60' side='bottom' align='end' sideOffset={20}>
-        <div className='text-sm font-medium text-center text-neutral-600 pb-4'>List actions</div>
-        <PopoverClose ref={closeRef} asChild>
-          <Button className='h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600' variant={'ghost'}>
-            <X className='h-4 w-4' />
+      <PopoverContent className='w-60' side='bottom' align='end'>
+        <div className='flex items-center justify-between mb-4'>
+          <p className='text-sm font-medium text-neutral-600'>List Actions</p>
+          <PopoverClose asChild>
+            <Button variant={'ghost'} size={'icon-xs'}>
+              <X />
+            </Button>
+          </PopoverClose>
+        </div>
+
+        <div className='space-y-2'>
+          <Button size={'sm'} onClick={onAddCard} className='w-full'>
+            <DiamondPlus />
+            Add card
           </Button>
-        </PopoverClose>
-        <Button
-          onClick={onAddCard}
-          className='rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm'
-          variant={'ghost'}
-        >
-          Add card...
-        </Button>
-        <form action={onCopy}>
-          <input hidden name='id' id='id' value={data.id} />
-          <input hidden name='boardId' id='boardId' value={data.boardId} />
-          <FormSubmit
-            variant={'ghost'}
-            className='rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm'
-          >
-            Copy list...
-          </FormSubmit>
-        </form>
-        <Separator />
-        <form action={onDelete}>
-          <input hidden name='id' id='id' value={data.id} />
-          <input hidden name='boardId' id='boardId' value={data.boardId} />
-          <FormSubmit
-            variant={'ghost'}
-            className='rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm'
-          >
-            Delete this list
-          </FormSubmit>
-        </form>
+
+          <form action={onCopy}>
+            <input hidden name='id' id='id' value={data.id} />
+            <input hidden name='boardId' id='boardId' value={data.boardId} />
+            <FormSubmit variant={'outline-primary'} className='w-full'>
+              <CopyPlus />
+              Copy list
+            </FormSubmit>
+          </form>
+
+          <form action={onDelete}>
+            <input hidden name='id' id='id' value={data.id} />
+            <input hidden name='boardId' id='boardId' value={data.boardId} />
+            <FormSubmit variant={'outline-destructive'} className='w-full'>
+              <Trash2 />
+              Delete this list
+            </FormSubmit>
+          </form>
+        </div>
       </PopoverContent>
     </Popover>
   )

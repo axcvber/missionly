@@ -20,7 +20,7 @@ const CardItem = ({ data, index }: CardItemProps) => {
           ref={provided.innerRef}
           role='button'
           onClick={() => onOpen(data.id)}
-          className='truncate border-2 border-transparent hover:border-black py-2 px-3 text-sm bg-white rounded-md shadow-sm'
+          className='truncate my-1 border-2 border-transparent active:border-primary hover:border-primary py-2 px-3 text-sm bg-white rounded-md shadow-sm'
         >
           {data.title}
         </div>

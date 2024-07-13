@@ -3,7 +3,7 @@
 import React from 'react'
 import { Popover, PopoverClose, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
-import { MoreHorizontal, X } from 'lucide-react'
+import { MoreHorizontal, Trash2, X } from 'lucide-react'
 import { useAction } from '@/hooks/use-action'
 import { deleteBoard } from '@/actions/delete-board'
 import { useToast } from '@/components/ui/use-toast'
@@ -31,22 +31,21 @@ const BoardOptions = ({ id }: BoardOptionsProps) => {
     <Popover>
       <PopoverTrigger asChild>
         <Button className='h-auto w-auto p-2' variant={'transparent'}>
-          <MoreHorizontal className='w-4 h-4' />
+          <MoreHorizontal />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='px-0 py-3' side='bottom' align='start'>
-        <div className='text-sm font-medium text-center text-neutral-600 pb-4'>Board Actions</div>
-        <PopoverClose asChild>
-          <Button className='h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600' variant={'ghost'}>
-            <X className='w-4 h-4' />
-          </Button>
-        </PopoverClose>
-        <Button
-          variant={'ghost'}
-          disabled={isLoading}
-          onClick={onDelete}
-          className='rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm'
-        >
+      <PopoverContent className='w-60' side='bottom' align='end' sideOffset={10}>
+        <div className='flex items-center justify-between mb-4'>
+          <p className='text-sm font-medium text-neutral-600'>Board Actions</p>
+          <PopoverClose asChild>
+            <Button variant={'ghost'} size={'icon-xs'}>
+              <X />
+            </Button>
+          </PopoverClose>
+        </div>
+
+        <Button size={'sm'} variant={'outline-destructive'} disabled={isLoading} onClick={onDelete} className='w-full'>
+          <Trash2 />
           Delete this board
         </Button>
       </PopoverContent>

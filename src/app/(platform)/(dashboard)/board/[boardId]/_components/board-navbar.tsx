@@ -2,6 +2,7 @@ import { Board } from '@prisma/client'
 import React from 'react'
 import BoardTitleForm from './board-title-form'
 import BoardOptions from './board-options'
+import BackButton from '@/components/back-button'
 
 interface BoardNavbarProps {
   data: Board
@@ -9,11 +10,10 @@ interface BoardNavbarProps {
 
 const BoardNavbar = ({ data }: BoardNavbarProps) => {
   return (
-    <div className='w-full h-14 z-[40] bg-black/50 fixed top-14 flex items-center px-6 gap-x-4 text-white'>
+    <div className='w-full h-14 z-50 sticky top-16 bg-black/50 backdrop-blur-sm flex items-center justify-between px-4 gap-x-4'>
+      <BackButton />
       <BoardTitleForm data={data} />
-      <div className='ml-auto'>
-        <BoardOptions id={data.id} />
-      </div>
+      <BoardOptions id={data.id} />
     </div>
   )
 }

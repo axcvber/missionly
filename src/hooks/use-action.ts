@@ -46,5 +46,5 @@ export const useAction = <TInput, TOutput>(
     },
     [action, options]
   )
-  return { execute, fieldErrors, error, data, isLoading }
+  return { execute, fieldErrors, setFieldErrors, error, data, isLoading }
 }

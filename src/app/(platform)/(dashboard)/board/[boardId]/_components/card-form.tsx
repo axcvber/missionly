@@ -2,7 +2,7 @@
 
 import React, { ElementRef, KeyboardEventHandler, forwardRef, useRef } from 'react'
 import { Button } from '@/components/ui/button'
-import { Plus, X } from 'lucide-react'
+import { DiamondPlus, Plus, X } from 'lucide-react'
 import { FormTextarea } from '@/components/form/form-textarea'
 import { FormSubmit } from '@/components/form/form-submit'
 import { useAction } from '@/hooks/use-action'
@@ -66,7 +66,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
 
     if (isEditing) {
       return (
-        <form ref={formRef} action={onSubmit} className='m-1 py-0.5 px-1 space-y-4'>
+        <form ref={formRef} action={onSubmit} className='m-1 py-0.5 px-1 space-y-3'>
           <FormTextarea
             id='title'
             ref={ref}
@@ -74,11 +74,14 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
             placeholder='Enter a title for this card...'
             errors={fieldErrors}
           />
-          <input hidden id='listId' name='listId' value={listId} />
+          <input hidden readOnly id='listId' name='listId' value={listId} />
           <div className='flex items-center gap-x-1'>
-            <FormSubmit>Add card</FormSubmit>
-            <Button onClick={disableEditing} size={'sm'} variant={'ghost'}>
-              <X className='h-5 w-5' />
+            <FormSubmit>
+              <DiamondPlus />
+              Add card
+            </FormSubmit>
+            <Button onClick={disableEditing} size={'icon'} variant={'outline-destructive'}>
+              <X />
             </Button>
           </div>
         </form>
